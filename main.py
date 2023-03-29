@@ -16,8 +16,8 @@ import random
 # THIS IS BIN ONLY
 
 print("Generating adjacency matrix...")
-num_vertices = 200 
-graph = [[0] * num_vertices for _ in range(num_vertices)] 
+num_vertices = 200
+graph = [[0] * num_vertices for _ in range(num_vertices)]
 
 for i in range(num_vertices):
     vertex1, vertex2 = random.sample(range(num_vertices),2)
@@ -39,6 +39,7 @@ def parse_file(filename):
 
         # Get the number of vertices from the 'p edge' line
         num_vertices = int(line.split()[2])
+        num_edges = int(line.split()[3])
 
         # Create an empty adjacency matrix
         adjacency_matrix = [[0] * num_vertices for _ in range(num_vertices)]
@@ -50,7 +51,7 @@ def parse_file(filename):
                 v1, v2 = int(v1) - 1, int(v2) - 1  # Convert to 0-indexed
                 adjacency_matrix[v1][v2] = 1
                 adjacency_matrix[v2][v1] = 1  # Assuming undirected graph
-        print("...done!")
+        print(f"...done! Graph has {num_vertices} verices and {num_edges} edges.")
         return adjacency_matrix, num_vertices
 
 graph, num_vertices = parse_file('/content/queen5_5.col')
